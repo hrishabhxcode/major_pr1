@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
-import { CheckCircle, AlertTriangle, User, Bot } from 'lucide-react';
+import { CheckCircle, AlertTriangle } from 'lucide-react';
 
 const Playground = () => {
+  const BACKEND_URL = "https://major-pr1.onrender.com"; // ✅ Your backend URL
+
   const [code, setCode] = useState('// Paste your code here');
   const [suggestions, setSuggestions] = useState([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -18,7 +20,12 @@ const Playground = () => {
     }
   ]);
 
-  
+  // Auto scroll chat
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  // Extract code inside ``` ```
   const extractCode = (text) => {
     const match = text.match(/```[\s\S]*?```/);
     if (!match) return text;
@@ -29,14 +36,14 @@ const Playground = () => {
       .trim();
   };
 
-  
+  // ========== ANALYZE CODE =============
   const analyzeCode = async () => {
     setIsAnalyzing(true);
 
     try {
-      addMessage("Analyzing code with Groq AI...", "assistant");
+      addMessage("🔍 Analyzing your code with Groq AI...", "assistant");
 
-      const res = await fetch("https://your-backend.onrender.com/api/analyze", {
+      const res = await fetch(`${BACKEND_URL}/api/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code }),
@@ -50,18 +57,18 @@ const Playground = () => {
         setSuggestions(data.suggestions || []);
 
         if (data.improved_code) {
-          addMessage("Here is the improved version:", "assistant");
+          addMessage("✨ Improved version of your code:", "assistant");
           addMessage("```js\n" + data.improved_code + "\n```", "assistant", true);
         }
       }
     } catch (err) {
-      addMessage("❌ Server error analyzing code.", "assistant");
+      addMessage("❌ Server error while analyzing code.", "assistant");
     }
 
     setIsAnalyzing(false);
   };
 
-  
+  // ========== CHAT WITH AI =============
   const sendChat = async () => {
     if (!inputMessage.trim()) return;
 
@@ -92,7 +99,7 @@ const Playground = () => {
     }));
 
     try {
-      const res = await fetch("https://your-backend.onrender.com/api/chat", {
+      const res = await fetch(`${BACKEND_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: chatHistory }),
@@ -119,6 +126,7 @@ const Playground = () => {
     }
   };
 
+  // Add assistant/user message
   const addMessage = (text, sender = "assistant", isCode = false) => {
     setMessages(prev => [
       ...prev,
