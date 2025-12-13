@@ -1,9 +1,11 @@
 import { BotMessageSquare } from "lucide-react";
-import { BatteryCharging } from "lucide-react";
+import { Wallet } from "lucide-react";
 import { Fingerprint } from "lucide-react";
 import { ShieldHalf } from "lucide-react";
-import { PlugZap } from "lucide-react";
+import { HardDriveDownload } from "lucide-react";
 import { GlobeLock } from "lucide-react";
+import { FileCode } from "lucide-react";
+import { Lock } from "lucide-react";
 
 import user1 from "../assets/profile-pictures/user1.jpg";
 import user2 from "../assets/profile-pictures/user2.jpg";
@@ -15,168 +17,193 @@ import user6 from "../assets/profile-pictures/user6.jpg";
 export const navItems = [
   { label: "Home", href: "/" },
   { label: "Features", href: "/features" },
-  { label: "Workflow", href: "/workflow" },
+  { 
+    label: "dApps", 
+    href: "/dapps",
+    subItems: [
+      { label: "Ethereum Playground", href: "/dapps/ethereum-simulator" },
+      { label: "Bitcoin Sandbox", href: "/dapps/bitcoin-sandbox" },
+      { label: "DeFi Simulator", href: "/dapps/defi-simulator" },
+      { label: "Smart Contract IDE", href: "/dapps/ide" },
+    ]
+  },
+  { 
+    label: "NFTs", 
+    href: "/nfts",
+    subItems: [
+      { label: "NFT Marketplace", href: "/nfts/marketplace" },
+      { label: "Ethereum NFT Creator", href: "/nfts/ethereum-creator" },
+      { label: "Bitcoin Ordinals", href: "/nfts/bitcoin-ordinals" },
+      { label: "NFT Analytics", href: "/nfts/analytics" },
+    ]
+  },
   { label: "Playground", href: "/playground" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Releases", href: "/releases" },
-  { label: "Testimonials", href: "/testimonials" },
-  { label: "What We Do", href: "/whatwedo" },
+  { label: "DAO", href: "/dao" },
+  { label: "Docs", href: "/docs" },
 ];
 
 export const testimonials = [
   {
-    user: "John Doe",
-    company: "Stellar Solutions",
+    user: "Satoshi N",
+    company: "Bitcoin Foundation",
     image: user1,
-    text: "I am extremely satisfied with the services provided. The team was responsive, professional, and delivered results beyond my expectations.",
+    text: "The team's expertise in smart contract development helped us build a secure and scalable DeFi protocol that's now processing millions in TVL.",
   },
   {
-    user: "Jane Smith",
-    company: "Blue Horizon Technologies",
+    user: "Vitalik B",
+    company: "Ethereum Foundation",
     image: user2,
-    text: "I couldn't be happier with the outcome of our project. The team's creativity and problem-solving skills were instrumental in bringing our vision to life",
+    text: "Their deep understanding of blockchain technology and zero-knowledge proofs helped us optimize our Layer 2 solution.",
   },
   {
-    user: "David Johnson",
-    company: "Quantum Innovations",
+    user: "Charles H",
+    company: "IOG",
     image: user3,
-    text: "Working with this company was a pleasure. Their attention to detail and commitment to excellence are commendable. I would highly recommend them to anyone looking for top-notch service.",
+    text: "The team's work on our NFT marketplace was exceptional. They delivered a seamless user experience with fast transactions and low fees.",
   },
   {
-    user: "Ronee Brown",
-    company: "Fusion Dynamics",
+    user: "Gavin W",
+    company: "Polkadot",
     image: user4,
-    text: "Working with the team at XYZ Company was a game-changer for our project. Their attention to detail and innovative solutions helped us achieve our goals faster than we thought possible. We are grateful for their expertise and professionalism!",
+    text: "Their cross-chain interoperability solution bridged multiple ecosystems, enabling seamless asset transfers between different blockchains.",
   },
   {
-    user: "Michael Wilson",
-    company: "Visionary Creations",
+    user: "Brian A",
+    company: "Coinbase",
     image: user5,
-    text: "I am amazed by the level of professionalism and dedication shown by the team. They were able to exceed our expectations and deliver outstanding results.",
+    text: "The security audit conducted by the team helped us identify and fix critical vulnerabilities in our smart contracts.",
   },
   {
-    user: "Emily Davis",
-    company: "Synergy Systems",
+    user: "Alexa",
+    company: "DeFI",
     image: user6,
-    text: "The team went above and beyond to ensure our project was a success. Their expertise and dedication are unmatched. I look forward to working with them again in the future.",
+    text: "Best in the Business",
   },
 ];
 
 export const features = [
   {
-    icon: <BotMessageSquare />,
-    text: "Drag-and-Drop Interface",
+    icon: <FileCode />,
+    text: "Blockchain Simulators",
     description:
-      "Easily design and arrange your VR environments with a user-friendly drag-and-drop interface.",
+      "Experiment with Bitcoin and Ethereum testnets, simulate transactions, and test smart contracts in a risk-free environment.",
   },
   {
-    icon: <Fingerprint />,
-    text: "Multi-Platform Compatibility",
+    icon: <Wallet />,
+    text: "Multi-Chain Wallet",
     description:
-      "Build VR applications that run seamlessly across multiple platforms, including mobile, desktop, and VR headsets.",
+      "Connect and manage both Bitcoin and Ethereum wallets, with testnet support for safe experimentation.",
   },
   {
     icon: <ShieldHalf />,
-    text: "Built-in Templates",
+    text: "Security Sandbox",
     description:
-      "Jumpstart your VR projects with a variety of built-in templates for different types of applications and environments.",
+      "Test smart contract vulnerabilities and security measures in our isolated sandbox environment.",
   },
   {
-    icon: <BatteryCharging />,
-    text: "Real-Time Preview",
+    icon: <HardDriveDownload />,
+    text: "NFT Studio",
     description:
-      "Preview your VR application in real-time as you make changes, allowing for quick iterations and adjustments.",
+      "Create, mint, and simulate NFT collections on both Ethereum and Bitcoin networks with our intuitive studio.",
   },
   {
-    icon: <PlugZap />,
-    text: "Collaboration Tools",
+    icon: <Fingerprint />,
+    text: "DeFi Playground",
     description:
-      "Work together with your team in real-time on VR projects, enabling seamless collaboration and idea sharing.",
+      "Simulate DeFi protocols, test liquidity pools, and experiment with yield farming strategies.",
   },
   {
-    icon: <GlobeLock />,
-    text: "Analytics Dashboard",
+    icon: <Lock />,
+    text: "Smart Contract IDE",
     description:
-      "Gain valuable insights into user interactions and behavior within your VR applications with an integrated analytics dashboard.",
+      "Write, test, and deploy smart contracts for both Ethereum and Bitcoin with our integrated development environment.",
   },
 ];
 
-export const checklistItems = [
+export const simulationFeatures = [
   {
-    title: "Code merge made easy",
+    title: "Bitcoin Transaction Simulator",
     description:
-      "Track the performance of your VR apps and gain insights into user behavior.",
+      "Create and sign Bitcoin transactions, test different fee scenarios, and understand UTXO management.",
+    icon: "₿",
+    link: "/simulator/bitcoin"
   },
   {
-    title: "Review code without worry",
+    title: "Ethereum Smart Contract Sandbox",
     description:
-      "Track the performance of your VR apps and gain insights into user behavior.",
+      "Deploy and interact with smart contracts on a simulated Ethereum network with test ETH.",
+    icon: "Ξ",
+    link: "/simulator/ethereum"
   },
   {
-    title: "AI Assistance to reduce time",
+    title: "NFT Minting Simulator",
     description:
-      "Track the performance of your VR apps and gain insights into user behavior.",
+      "Experience the complete NFT creation and minting process without spending real crypto.",
+    icon: "🖼️",
+    link: "/simulator/nft"
   },
   {
-    title: "Share work in minutes",
+    title: "DeFi Protocol Testing",
     description:
-      "Track the performance of your VR apps and gain insights into user behavior.",
+      "Simulate DeFi interactions like swapping, staking, and yield farming with virtual assets.",
+    icon: "🔄",
+    link: "/simulator/defi"
   },
 ];
 
 export const pricingOptions = [
   {
-    title: "Free",
-    price: "$0",
+    title: "Starter",
+    price: "0.1 ETH",
     features: [
-      "Private board sharing",
-      "5 Gb Storage",
-      "Web Analytics",
-      "Private Mode",
+      "Basic Smart Contract Deployment",
+      "Ethereum & Testnet Support",
+      "Community Support",
+      "Basic Analytics",
     ],
   },
   {
-    title: "Pro",
-    price: "$10",
+    title: "Developer",
+    price: "1 ETH",
     features: [
-      "Private board sharing",
-      "10 Gb Storage",
-      "Web Analytics (Advance)",
-      "Private Mode",
+      "Multi-Chain Deployment",
+      "Priority Support",
+      "Advanced Analytics",
+      "API Access",
     ],
   },
   {
     title: "Enterprise",
-    price: "$200",
+    price: "Custom",
     features: [
-      "Private board sharing",
-      "Unlimited Storage",
-      "High Performance Network",
-      "Private Mode",
+      "Custom Smart Contract Development",
+      "24/7 Dedicated Support",
+      "Security Audits",
+      "Custom Tokenomics Design",
     ],
   },
 ];
 
 export const resourcesLinks = [
-  { href: "#", text: "Getting Started" },
-  { href: "#", text: "Documentation" },
-  { href: "#", text: "Tutorials" },
+  { href: "#", text: "Web3 Documentation" },
+  { href: "#", text: "Smart Contract Guides" },
   { href: "#", text: "API Reference" },
-  { href: "#", text: "Community Forums" },
+  { href: "#", text: "Tutorials" },
+  { href: "#", text: "Whitepaper" },
 ];
 
 export const platformLinks = [
-  { href: "#", text: "Features" },
-  { href: "#", text: "Supported Devices" },
-  { href: "#", text: "System Requirements" },
-  { href: "#", text: "Downloads" },
-  { href: "#", text: "Release Notes" },
+  { href: "#", text: "Blockchain Explorer" },
+  { href: "#", text: "dApp Store" },
+  { href: "#", text: "Node Services" },
+  { href: "#", text: "Developer Tools" },
+  { href: "#", text: "API Status" },
 ];
 
 export const communityLinks = [
-  { href: "#", text: "Events" },
-  { href: "#", text: "Meetups" },
-  { href: "#", text: "Conferences" },
+  { href: "#", text: "Governance" },
+  { href: "#", text: "Grants Program" },
+  { href: "#", text: "Developer Bounties" },
   { href: "#", text: "Hackathons" },
-  { href: "#", text: "Jobs" },
+  { href: "#", text: "Careers" },
 ];

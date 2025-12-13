@@ -18,12 +18,7 @@ const Playground = () => {
     }
   ]);
 
-  // Auto scroll chat
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
-
-  // Extract code inside ``` ```
+  
   const extractCode = (text) => {
     const match = text.match(/```[\s\S]*?```/);
     if (!match) return text;
@@ -34,7 +29,7 @@ const Playground = () => {
       .trim();
   };
 
-  // ========== ANALYZE CODE =============
+  
   const analyzeCode = async () => {
     setIsAnalyzing(true);
 
@@ -66,7 +61,7 @@ const Playground = () => {
     setIsAnalyzing(false);
   };
 
-  // ========== CHAT WITH AI =============
+  
   const sendChat = async () => {
     if (!inputMessage.trim()) return;
 
@@ -84,7 +79,7 @@ const Playground = () => {
     const typingMsg = {
       id: messages.length + 2,
       sender: "assistant",
-      text: "⏳ Assistant is typing...",
+      text: "⏳ Fermi is typing...",
       isCode: false,
       timestamp: new Date()
     };
@@ -213,9 +208,14 @@ const Playground = () => {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 placeholder="Ask anything..."
-                className="flex-1 bg-gray-700 p-2 rounded"
+                className="flex-1 bg-gray-700 p-3 sm:p-2 rounded-lg sm:rounded text-sm sm:text-base"
               />
-              <button className="bg-blue-600 px-4 rounded">Send</button>
+              <button 
+                type="submit"
+                className="bg-blue-600 hover:bg-blue-700 px-4 sm:px-6 py-2 sm:py-1 rounded-lg sm:rounded text-sm sm:text-base font-medium transition-colors"
+              >
+                Send
+              </button>
             </form>
           </div>
 
