@@ -66,13 +66,47 @@ ${code}
   }
 });
 
+// Check if the message is asking about the owner
+const isOwnerQuestion = (message) => {
+  const ownerKeywords = ['owner', 'creator', 'who made', 'who created', 'hrishabh'];
+  const messageText = message.toLowerCase();
+  return ownerKeywords.some(keyword => messageText.includes(keyword));
+};
+
 // =========================
 // CHAT (supports full code output)
 // =========================
 app.post("/api/chat", async (req, res) => {
-  const { messages } = req.body;
-
   try {
+    const { message, code, fileType } = req.body;
+    
+    if (!message) {
+      return res.status(400).json({ error: "Message is required" });
+    }
+
+    // Check if the message is asking about the owner
+    if (isOwnerQuestion(message)) {
+      return res.json({ 
+        response: "The owner of this application is Hrishabh. He's the creator behind this code playground and AI assistant.",
+        isCode: false
+      });
+    }
+
+    const messages = [
+      { 
+        role: "system", 
+        content: `You are a helpful coding assistant. Help users with their code in ${fileType || 'JavaScript'}.
+        - Be concise and helpful
+        - Format code responses with markdown
+        - If the question is about code, include the relevant code`
+      },
+      { role: "user", content: message }
+    ];
+
+    if (code) {
+      messages[0].content += `\n\nCurrent code:\n\`\`\`${fileType || 'javascript'}\n${code}\n\`\`\``;
+    }
+
     const response = await axios.post(
       GROQ_URL,
       {
@@ -82,16 +116,28 @@ app.post("/api/chat", async (req, res) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
         },
       }
     );
 
-    const reply = response.data.choices[0].message.content;
-    res.json({ reply });
+    const reply = response.data.choices[0]?.message?.content || "I couldn't generate a response. Please try again.";
+    
+    // Check if the response contains code blocks
+    const isCode = reply.includes('```');
+    
+    res.json({ 
+      response: reply,
+      isCode
+    });
+    
   } catch (err) {
     console.error("Chat Error:", err.response?.data || err.message);
-    res.status(500).json({ error: "Chat API failed" });
+    res.status(500).json({ 
+      response: `Sorry, I encountered an error: ${err.message}`,
+      isCode: false
+    });
   }
 });
 
