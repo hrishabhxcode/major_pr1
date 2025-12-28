@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 const Playground = () => {
-  const BACKEND_URL = "http://localhost:3001"; //https://major-pr1.onrender.com
+  const BACKEND_URL = "https://major-pr1.onrender.com"; //https://major-pr1.onrender.com
   const [files, setFiles] = useLocalStorage('codeFiles', [
     { id: '1', name: 'script.js', code: '// Welcome to Code Playground!\n// Try writing some code and click Run or ask me anything!', language: 'javascript' }
   ]);
